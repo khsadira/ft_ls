@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 11:24:28 by khsadira          #+#    #+#             */
-/*   Updated: 2018/06/26 16:36:13 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/08/30 16:50:19 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ static t_flag	*init_flag(t_flag *flag)
 	return (flag);
 }
 
-static void	flag_error(t_flag *flag)
+static void		flag_error(t_flag *flag)
 {
 	ft_putstr("ls: illegal option -- -\nusage: ls [-Ralrt] [file ...]\n");
 	free(flag);
 	exit(1);
 }
 
-static t_flag *check_flag_error(t_flag *flag, char c)
+static t_flag	*check_flag_error(t_flag *flag, char c)
 {
 	if (c == '-' || (c != 'a' && c != 't' &&
-		c != 'r' && c != 'R' && c != 'l'))
+				c != 'r' && c != 'R' && c != 'l'))
 		return (NULL);
 	if (c == 'a')
 		flag->a = 1;
@@ -49,10 +49,10 @@ static t_flag *check_flag_error(t_flag *flag, char c)
 	return (flag);
 }
 
-t_flag	*convert_to_flag(char **str)
+t_flag			*convert_to_flag(char **str)
 {
-	int		i;
-	int		j;
+	int			i;
+	int			j;
 	t_flag		*flag;
 
 	flag = NULL;
@@ -68,7 +68,7 @@ t_flag	*convert_to_flag(char **str)
 		while (str[i][j])
 		{
 			if (((flag = check_flag_error(flag, str[i][j])) == NULL))
-					flag_error(flag);
+				flag_error(flag);
 			j++;
 		}
 		i++;
