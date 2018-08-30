@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:15:40 by khsadira          #+#    #+#             */
-/*   Updated: 2018/06/22 14:31:27 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/08/30 16:19:08 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,7 @@ static void	ft_lstprint_l2(t_lst *list, t_size *size_l, int phys)
 		i = size_l->s_block - ft_nblen(list->buf.st_size);
 		while (i-- > 0)
 			ft_putchar(' ');
-		ft_putnbr((int)list->buf.st_size);
+		ft_put_off_t(list->buf.st_size);
 	}
 	ft_lstprint_l3(list, size_l);
 }

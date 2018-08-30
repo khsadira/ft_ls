@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 10:30:16 by khsadira          #+#    #+#             */
-/*   Updated: 2018/06/26 17:40:36 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/08/30 16:14:04 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 
 int				main(int ac, char **av);
 int				ft_nblen(int nb);
+void			ft_put_off_t(off_t nb);
 
 typedef struct	s_lst
 {
