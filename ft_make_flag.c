@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 11:24:28 by khsadira          #+#    #+#             */
-/*   Updated: 2018/08/30 16:50:19 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/08/31 14:07:51 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_flag	*init_flag(t_flag *flag)
 	flag->a = 0;
 	flag->t = 0;
 	flag->r = 0;
-	flag->R = 0;
+	flag->rec = 0;
 	flag->l = 0;
 	return (flag);
 }
@@ -43,7 +43,7 @@ static t_flag	*check_flag_error(t_flag *flag, char c)
 	if (c == 'r')
 		flag->r = 1;
 	if (c == 'R')
-		flag->R = 1;
+		flag->rec = 1;
 	if (c == 'l')
 		flag->l = 1;
 	return (flag);

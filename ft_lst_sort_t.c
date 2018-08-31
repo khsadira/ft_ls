@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 13:54:53 by khsadira          #+#    #+#             */
-/*   Updated: 2018/06/22 14:28:53 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/08/31 13:25:20 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,54 +30,59 @@ static t_lst	*mergesplit(t_lst *head)
 	return (tmp);
 }
 
-static t_lst  *merge(t_lst *first, t_lst *second)
+static	t_lst	*merge_swap(t_lst *first, t_lst *second)
+{
+	first->next->bfr = first;
+	first->bfr = NULL;
+	return (first);
+}
+
+static	t_lst	*merge_check(t_lst *first, t_lst *second)
 {
 	if (!first)
-		return second;
-
+		return (second);
 	if (!second)
-		return first;
+		return (first);
+	return (NULL);
+}
 
+static t_lst	*merge(t_lst *first, t_lst *second, t_lst *lst)
+{
+	if ((lst = merge_check(first, second)) != NULL)
+		return (lst);
 	if (first->buf.st_mtime > second->buf.st_mtime)
 	{
-		first->next = merge(first->next, second);
-		first->next->bfr = first;
-		first->bfr = NULL;
-		return (first);
+		first->next = merge(first->next, second, NULL);
+		return (merge_swap(first, second));
 	}
 	else if (first->buf.st_mtime == second->buf.st_mtime)
 	{
 		if (ft_strcmp(first->name, second->name) <= 0)
 		{
-			first->next = merge(first->next, second);
-			first->next->bfr = first;
-			first->bfr = NULL;
-			return (first);
+			first->next = merge(first->next, second, NULL);
+			return (merge_swap(first, second));
 		}
 		else
 		{
-			second->next = merge(first, second->next);
-			second->next->bfr = second;
-			second->bfr = NULL;
-			return (second);
+			second->next = merge(first, second->next, NULL);
+			return (merge_swap(second, first));
 		}
 	}
 	else
 	{
-		second->next = merge(first, second->next);
-		second->next->bfr = second;
-		second->bfr = NULL;
-		return (second);
+		second->next = merge(first, second->next, NULL);
+		return (merge_swap(second, first));
 	}
 }
 
-t_lst	*merge_sort_t(t_lst *head)
+t_lst			*merge_sort_t(t_lst *head)
 {
-	if (!head || !head->next)
-		return head;
-	t_lst *second = mergesplit(head);
+	t_lst	*second;
 
+	if (!head || !head->next)
+		return (head);
+	second = mergesplit(head);
 	head = merge_sort_t(head);
 	second = merge_sort_t(second);
-	return (merge(head, second));
+	return (merge(head, second, NULL));
 }

@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 16:29:38 by khsadira          #+#    #+#             */
-/*   Updated: 2018/06/26 17:17:51 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/08/31 13:06:27 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@ static t_lst	*mergesplit(t_lst *head)
 	return (tmp);
 }
 
-static t_lst  *merge(t_lst *first, t_lst *second)
+static t_lst	*merge(t_lst *first, t_lst *second)
 {
 	if (!first)
 		return (second);
-
 	if (!second)
 		return (first);
 	if (ft_strcmp(first->name, second->name) <= 0)
@@ -53,14 +52,14 @@ static t_lst  *merge(t_lst *first, t_lst *second)
 	}
 }
 
-t_lst	*merge_sort(t_lst *head)
+t_lst			*merge_sort(t_lst *head)
 {
+	t_lst	*second;
+
 	if (!head || !head->next)
 		return (head);
-	t_lst *second = mergesplit(head);
-	
+	second = mergesplit(head);
 	head = merge_sort(head);
 	second = merge_sort(second);
-
 	return (merge(head, second));
 }

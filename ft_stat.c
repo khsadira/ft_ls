@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_lst.c                                      :+:      :+:    :+:   */
+/*   ft_stat1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/31 11:53:21 by khsadira          #+#    #+#             */
-/*   Updated: 2018/08/31 11:53:22 by khsadira         ###   ########.fr       */
+/*   Created: 2018/06/15 15:40:05 by khsadira          #+#    #+#             */
+/*   Updated: 2018/08/31 12:19:25 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_lst_free(t_lst **list)
+int	major_d(unsigned int dev)
 {
-	t_lst	*tmp;
+	int		res;
 
-	while (*list)
-	{
-		tmp = *list;
-		if (tmp->name)
-			ft_strdel(&tmp->name);
-		if (tmp->path)
-			ft_strdel(&tmp->path);
-		*list = (*list)->next;
-		free(tmp);
-	}
+	res = dev >> 24 & 0xff;
+	return (res);
+}
+
+int	minor_d(int dev)
+{
+	int		res;
+
+	res = dev & 0xffffff;
+	return (res);
 }

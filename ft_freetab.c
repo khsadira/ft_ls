@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_lst.c                                      :+:      :+:    :+:   */
+/*   ft_freetab.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/31 11:53:21 by khsadira          #+#    #+#             */
-/*   Updated: 2018/08/31 11:53:22 by khsadira         ###   ########.fr       */
+/*   Created: 2018/08/31 11:16:01 by khsadira          #+#    #+#             */
+/*   Updated: 2018/08/31 11:17:13 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_lst_free(t_lst **list)
+void	ft_free_tab(char ***tab)
 {
-	t_lst	*tmp;
+	int	i;
 
-	while (*list)
-	{
-		tmp = *list;
-		if (tmp->name)
-			ft_strdel(&tmp->name);
-		if (tmp->path)
-			ft_strdel(&tmp->path);
-		*list = (*list)->next;
-		free(tmp);
-	}
+	i = 0;
+	while ((*tab)[i])
+		free((*tab)[i++]);
+	free(*tab);
 }
