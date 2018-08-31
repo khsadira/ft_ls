@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:15:40 by khsadira          #+#    #+#             */
-/*   Updated: 2018/08/31 11:36:33 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/08/31 14:20:39 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	ft_lstprint_l3(t_lst *list, t_size *size_l, time_t t1, char **date)
 	while (i-- > 0)
 		ft_putchar(' ');
 	ft_putstr(date[2]);
-	if (list->buf.st_mtime < t1 || list->buf.st_mtime > t1 - (262800 * 60))
+	if (list->buf.st_mtime > t1 || list->buf.st_mtime > t1 - (262800 * 60))
 	{
 		date[3][5] = '\0';
 		i = size_l->s_hour - ft_strlen(date[3]);
