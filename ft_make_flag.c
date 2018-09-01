@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 11:24:28 by khsadira          #+#    #+#             */
-/*   Updated: 2018/08/31 14:07:51 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/01 20:02:05 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,26 @@ static t_flag	*init_flag(t_flag *flag)
 	flag->r = 0;
 	flag->rec = 0;
 	flag->l = 0;
+	flag->alm = 0;
+	flag->s = 0;
+	flag->i = 0;
+	flag->c = 0;
+	flag->fi = 0;
 	return (flag);
 }
 
 static void		flag_error(t_flag *flag)
 {
-	ft_putstr("ls: illegal option -- -\nusage: ls [-Ralrt] [file ...]\n");
+	ft_putstr("ls: illegal option -- -\nusage: ls [-AFRacilrst] [file ...]\n");
 	free(flag);
 	exit(1);
 }
 
 static t_flag	*check_flag_error(t_flag *flag, char c)
 {
-	if (c == '-' || (c != 'a' && c != 't' &&
-				c != 'r' && c != 'R' && c != 'l'))
+	if (c == '-' || (c != 'a' && c != 't' && c != 'i' &&
+		c != 'r' && c != 'R' && c != 'l' && c != 'A' && c != 's' &&
+		c != 'c' && c != 'F'))
 		return (NULL);
 	if (c == 'a')
 		flag->a = 1;
@@ -46,6 +52,16 @@ static t_flag	*check_flag_error(t_flag *flag, char c)
 		flag->rec = 1;
 	if (c == 'l')
 		flag->l = 1;
+	if (c == 'A')
+		flag->alm = 1;
+	if (c == 's')
+		flag->s = 1;
+	if (c == 'i')
+		flag->i = 1;
+	if (c == 'F')
+		flag->fi = 1;
+	if (c == 'c')
+		flag->c = 1;
 	return (flag);
 }
 

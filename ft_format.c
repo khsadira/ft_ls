@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 14:21:40 by khsadira          #+#    #+#             */
-/*   Updated: 2018/08/31 11:52:29 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/01 20:22:19 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static t_size		*ft_init(t_size *size_l)
 	size_l->s_hour = 0;
 	size_l->s_minor = 0;
 	size_l->s_major = 0;
+	size_l->s_ino = 0;
+	size_l->s_blocks = 0;
 	return (size_l);
 }
 

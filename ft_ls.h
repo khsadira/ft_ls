@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 10:30:16 by khsadira          #+#    #+#             */
-/*   Updated: 2018/08/31 14:07:02 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/01 20:44:05 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ typedef struct		s_flag
 	int	r;
 	int	rec;
 	int	l;
+	int	alm;
+	int	s;
+	int	i;
+	int	fi;
+	int	c;
 }					t_flag;
 
 typedef struct		s_size
@@ -54,6 +59,8 @@ typedef struct		s_size
 	int	s_hour;
 	int	s_minor;
 	int	s_major;
+	int	s_ino;
+	int	s_blocks;
 }					t_size;
 
 int					main(int ac, char **av);
@@ -83,4 +90,7 @@ t_lst				*merge_sort_t(t_lst *head);
 void				ft_lst_free(t_lst **list);
 void				ft_putchar_socket(t_lst *list);
 void				ft_putstr_right(t_lst *list);
+void				ft_print_flag(t_flag *flag, t_size *size_l, t_lst *list);
+t_size				*ft_format_spec(t_flag *flag, t_size *size_l, t_lst *list);
+void				ft_print_ln(t_lst *list);
 #endif

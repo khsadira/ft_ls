@@ -6,24 +6,11 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:15:40 by khsadira          #+#    #+#             */
-/*   Updated: 2018/08/31 11:38:12 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/01 20:45:31 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-static void	ft_lnk(t_lst *list)
-{
-	char	link[255];
-	int		rl;
-
-	rl = 0;
-	if ((rl = readlink(list->path, link, 255)))
-	{
-		link[rl] = '\0';
-		ft_putendl(link);
-	}
-}
 
 static int	ft_phys(t_lst *list)
 {
@@ -39,22 +26,21 @@ static int	ft_phys(t_lst *list)
 static void	ft_lstprint_r(t_lst *list, t_flag *flag,
 				t_size *size_l, long long int blocks)
 {
-	int	phys;
+	int		phys;
+	t_size	*size;
 
+	size = ft_format_spec(flag, size, list);
 	phys = ft_phys(list);
 	while (list && list->next)
 		list = list->next;
 	while (list)
 	{
+		ft_print_flag(flag, size, list);
 		if (flag && flag->l == 1)
 		{
 			ft_lstprint_l(list, size_l, phys);
 			if (S_ISLNK(list->buf.st_mode))
-			{
-				ft_putstr(list->name);
-				ft_putstr(" -> ");
-				ft_lnk(list);
-			}
+				ft_print_ln(list);
 			else
 				ft_putendl(list->name);
 		}
@@ -62,25 +48,25 @@ static void	ft_lstprint_r(t_lst *list, t_flag *flag,
 			ft_putendl(list->name);
 		list = list->bfr;
 	}
+	free(size);
 }
 
 static void	ft_lstprint_norm(t_lst *list, t_flag *flag,
 					t_size *size_l, long long int blocks)
 {
-	int	phys;
+	int		phys;
+	t_size	*size;
 
+	size = ft_format_spec(flag, size, list);
 	phys = ft_phys(list);
 	while (list)
 	{
+		ft_print_flag(flag, size, list);
 		if (flag && flag->l == 1)
 		{
 			ft_lstprint_l(list, size_l, phys);
 			if (S_ISLNK(list->buf.st_mode))
-			{
-				ft_putstr(list->name);
-				ft_putstr(" -> ");
-				ft_lnk(list);
-			}
+				ft_print_ln(list);
 			else
 				ft_putendl(list->name);
 		}
@@ -88,6 +74,7 @@ static void	ft_lstprint_norm(t_lst *list, t_flag *flag,
 			ft_putendl(list->name);
 		list = list->next;
 	}
+	free(size);
 }
 
 void		ft_lstprint(t_lst *list, t_flag *flag,

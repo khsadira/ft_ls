@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:16:14 by khsadira          #+#    #+#             */
-/*   Updated: 2018/08/31 12:03:10 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/01 19:46:33 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,14 @@ static t_lst	*ft_creatlist(char *name, char *rep, t_flag *flag, t_lst *list)
 	return (list);
 }
 
+static int		ft_check_a(t_flag *flag, char *name)
+{
+	if (flag->a == 0 && flag->alm == 1 && name[0] == '.' &&
+			!ft_strequ(name, ".") && !ft_strequ(name, ".."))
+		return (1);
+	return (0);
+}
+
 t_lst			*ft_make_list(DIR *dir, t_flag *flag, char *rep)
 {
 	t_lst			*list;
@@ -60,7 +68,9 @@ t_lst			*ft_make_list(DIR *dir, t_flag *flag, char *rep)
 	list = NULL;
 	while ((dirread = readdir(dir)))
 	{
-		if (dirread->d_name[0] == '.' && flag->a == 1)
+		if (ft_check_a(flag, dirread->d_name))
+			list = ft_creatlist(ft_strdup(dirread->d_name), rep, flag, list);
+		else if (dirread->d_name[0] == '.' && flag->a == 1)
 			list = ft_creatlist(ft_strdup(dirread->d_name), rep, flag, list);
 		else if (dirread->d_name[0] != '.')
 			list = ft_creatlist(ft_strdup(dirread->d_name), rep, flag, list);
