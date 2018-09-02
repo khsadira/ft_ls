@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:15:40 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/02 15:40:20 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/02 16:57:11 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void		ft_lstprint_l(t_lst *list, t_size *size_l, int phys)
 
 	ft_putchar_socket(list);
 	ft_putstr_right(list);
-	i = 2 + size_l->s_size - ft_nblen(list->buf.st_nlink);
+	i = 2 + size_l->s_size - ft_nblen(list->buf.st_nlink) - ft_aclattr(list);
 	while (i-- > 0)
 		ft_putchar(' ');
 	ft_putnbr(list->buf.st_nlink);

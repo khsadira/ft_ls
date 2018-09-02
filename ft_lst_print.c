@@ -6,15 +6,15 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:15:40 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/02 16:03:19 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/02 18:17:43 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void	ft_print_f(t_lst *list, int flag)
+void		ft_print_f(t_lst *list, int flag, int put)
 {
-	ft_putstr(list->name);
+	ft_print_color(list);
 	if (flag == 1)
 	{
 		if (S_ISDIR(list->buf.st_mode))
@@ -26,7 +26,8 @@ static void	ft_print_f(t_lst *list, int flag)
 		else if (S_ISREG(list->buf.st_mode) && list->buf.st_mode & S_IXUSR)
 			ft_putchar('*');
 	}
-	ft_putchar(10);
+	if (put)
+		ft_putchar(10);
 }
 
 static int	ft_phys(t_lst *list)
@@ -57,12 +58,12 @@ static void	ft_lstprint_r(t_lst *list, t_flag *flag, t_size *size_l)
 		{
 			ft_lstprint_l(list, size_l, phys);
 			if (S_ISLNK(list->buf.st_mode))
-				ft_print_ln(list);
+				ft_print_ln(list, flag->fi);
 			else
-				ft_print_f(list, flag->fi);
+				ft_print_f(list, flag->fi, 1);
 		}
 		else
-			ft_print_f(list, flag->fi);
+			ft_print_f(list, flag->fi, 1);
 		list = list->bfr;
 	}
 	free(size);
@@ -83,12 +84,12 @@ static void	ft_lstprint_norm(t_lst *list, t_flag *flag, t_size *size_l)
 		{
 			ft_lstprint_l(list, size_l, phys);
 			if (S_ISLNK(list->buf.st_mode))
-				ft_print_ln(list);
+				ft_print_ln(list, flag->fi);
 			else
-				ft_print_f(list, flag->fi);
+				ft_print_f(list, flag->fi, 1);
 		}
 		else
-			ft_print_f(list, flag->fi);
+			ft_print_f(list, flag->fi, 1);
 		list = list->next;
 	}
 	free(size);
@@ -102,7 +103,7 @@ void		ft_lstprint(t_lst *list, t_flag *flag,
 
 	phys = ft_phys(list);
 	i = 0;
-	if (flag && flag->l == 1 && blocks != -1 && list)
+	if (flag && (flag->l || flag->s) && blocks != -1 && list)
 	{
 		ft_putstr("total ");
 		ft_put_off_t(blocks);

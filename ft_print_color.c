@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_ln.c                                      :+:      :+:    :+:   */
+/*   ft_print_color.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/01 20:41:21 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/02 16:40:50 by khsadira         ###   ########.fr       */
+/*   Created: 2018/09/02 16:23:47 by khsadira          #+#    #+#             */
+/*   Updated: 2018/09/02 19:22:18 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void	ft_lnk(t_lst *list)
+void	ft_print_color(t_lst *list)
 {
-	char	link[255];
-	int		rl;
-
-	rl = 0;
-	if ((rl = readlink(list->path, link, 255)))
-	{
-		link[rl] = '\0';
-		ft_putendl(link);
-	}
-}
-
-void		ft_print_ln(t_lst *list, int flag)
-{
-	ft_print_f(list, flag, 0);
-	ft_putstr(" -> ");
-	ft_lnk(list);
+	if (S_ISDIR(list->buf.st_mode))
+		ft_putstr(B_CYAN);
+	else if (S_ISLNK(list->buf.st_mode))
+		ft_putstr(PURPLE);
+	else if (S_ISFIFO(list->buf.st_mode))
+		ft_putstr(YELLOW);
+	else if (S_ISREG(list->buf.st_mode) &&
+		((list->buf.st_mode & S_IXUSR) == S_IXUSR))
+		ft_putstr(RED);
+	ft_putstr(list->name);
+	ft_putstr(INIT);
 }

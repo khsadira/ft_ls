@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 10:30:16 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/02 15:59:03 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/02 18:02:49 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@
 # include <pwd.h>
 # include <grp.h>
 # include <time.h>
+# include <sys/xattr.h>
+# include <sys/acl.h>
 # include "./libft/libft.h"
+# include "ft_color.h"
 # include <unistd.h>
 
 typedef struct		s_lst
@@ -92,5 +95,8 @@ void				ft_putchar_socket(t_lst *list);
 void				ft_putstr_right(t_lst *list);
 void				ft_print_flag(t_flag *flag, t_size *size_l, t_lst *list);
 t_size				*ft_format_spec(t_flag *flag, t_size *size_l, t_lst *list);
-void				ft_print_ln(t_lst *list);
+void				ft_print_ln(t_lst *list, int flag);
+void				ft_print_color(t_lst *list);
+void				ft_print_f(t_lst *list, int flag, int put);
+int					ft_aclattr(t_lst *list);
 #endif

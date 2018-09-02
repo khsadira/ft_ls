@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 19:52:55 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/01 20:47:32 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/02 18:19:42 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_size				*ft_format_spec(t_flag *flag, t_size *size_l, t_lst *list)
 	size_l = ft_init(size_l);
 	i = 0;
 	if (flag->i == 0 && flag->s == 0)
-		return (NULL);
+		return (size_l);
 	while (list)
 	{
 		if (flag->i == 1)

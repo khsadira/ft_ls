@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 10:43:46 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/02 15:58:32 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/02 17:15:40 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,10 @@ static void	ft_ls_end(t_flag *flag, t_lst *rep, DIR *dir)
 	nb = 0;
 	size_l = NULL;
 	lst_dir = ft_make_list(dir, flag, rep->name);
-	if (flag && flag->l == 1)
+	if (flag && (flag->l || flag->s))
 	{
-		size_l = ft_format(lst_dir);
+		if (flag->l)
+			size_l = ft_format(lst_dir);
 		nb = ft_blocks(lst_dir);
 	}
 	ft_lstprint(lst_dir, flag, size_l, nb);
