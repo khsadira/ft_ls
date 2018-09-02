@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 14:21:40 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/01 20:22:19 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/02 15:56:40 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ static t_size		*ft_check_size2(t_size *size_l, t_lst *list,
 										char **date, time_t t1)
 {
 	int		i;
-	char	*day;
-	char	*month;
-	char	*hm;
 
 	i = ft_strlen(date[2]);
 	if (size_l->s_day < i)

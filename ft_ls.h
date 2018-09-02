@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 10:30:16 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/01 20:44:05 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/02 15:59:03 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct		s_flag
 	int	s;
 	int	i;
 	int	fi;
-	int	c;
+	int	f;
 }					t_flag;
 
 typedef struct		s_size
@@ -80,9 +80,9 @@ void				ft_ls(t_flag *flag, t_lst *rep, int ac, int nb_flag);
 t_lst				*ft_make_list(DIR *dir, t_flag *flag, char *rep);
 void				ft_lstprint(t_lst *list, t_flag *flag, t_size *size_l,
 												long long int blocks);
-t_lst				*ft_ls_l(char *rep, t_lst *list, t_flag *flag);
+t_lst				*ft_ls_l(char *rep, t_lst *list);
 void				ft_ls_r(t_flag *flag, t_lst *list);
-void				ft_error(int error_i, char *s);
+void				ft_error(char *s);
 t_lst				*ft_newele(char *name);
 char				**ft_sort_char(char **str, t_flag *flag);
 t_lst				*merge_sort(t_lst *head);

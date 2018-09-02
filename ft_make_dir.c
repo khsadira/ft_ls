@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 11:25:26 by khsadira          #+#    #+#             */
-/*   Updated: 2018/08/31 13:59:29 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/02 16:05:12 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static t_lst	*l_noexist(char **str)
 	return (list);
 }
 
-static t_lst	*l_rep(char **str, t_flag *flag)
+static t_lst	*l_rep(char **str)
 {
 	int			i;
 	t_lst		*new_ele;
@@ -49,7 +49,7 @@ static t_lst	*l_rep(char **str, t_flag *flag)
 		if (lstat(str[i], &buf) != -1 && S_ISDIR(buf.st_mode))
 		{
 			new_ele = ft_newele(ft_strdup(str[i]));
-			new_ele = ft_ls_l(NULL, new_ele, flag);
+			new_ele = ft_ls_l(NULL, new_ele);
 			list = ft_addlist(list, new_ele);
 		}
 		i++;
@@ -59,7 +59,7 @@ static t_lst	*l_rep(char **str, t_flag *flag)
 	return (list);
 }
 
-static t_lst	*l_file(char **str, t_flag *flag)
+static t_lst	*l_file(char **str)
 {
 	int			i;
 	t_lst		*new_ele;
@@ -74,7 +74,7 @@ static t_lst	*l_file(char **str, t_flag *flag)
 		if (lstat(str[i], &buf) != -1 && !S_ISDIR(buf.st_mode))
 		{
 			new_ele = ft_newele(ft_strdup(str[i]));
-			new_ele = ft_ls_l(NULL, new_ele, flag);
+			new_ele = ft_ls_l(NULL, new_ele);
 			list = ft_addlist(list, new_ele);
 		}
 		i++;
@@ -88,6 +88,7 @@ static void		ft_print_file(t_flag *flag, t_lst *file, t_lst *rep)
 {
 	t_size	*form;
 
+	form = NULL;
 	if (flag && flag->t == 1)
 		file = merge_sort_t(file);
 	else
@@ -121,11 +122,11 @@ t_lst			*convert_to_dir(int nb, char **str, t_flag *flag)
 		}
 		ft_lst_free(&noexist);
 	}
-	file = l_file(str, flag);
+	file = l_file(str);
 	if (flag && flag->t == 1)
-		rep = merge_sort_t(l_rep(str, flag));
+		rep = merge_sort_t(l_rep(str));
 	else
-		rep = merge_sort(l_rep(str, flag));
+		rep = merge_sort(l_rep(str));
 	if (file)
 		ft_print_file(flag, file, rep);
 	return (rep);

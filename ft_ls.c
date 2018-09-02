@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 10:43:46 by khsadira          #+#    #+#             */
-/*   Updated: 2018/08/31 16:04:21 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/02 15:58:32 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static void	ft_ls_end(t_flag *flag, t_lst *rep, DIR *dir)
 	t_lst			*lst_dir;
 	t_size			*size_l;
 
+	nb = 0;
+	size_l = NULL;
 	lst_dir = ft_make_list(dir, flag, rep->name);
 	if (flag && flag->l == 1)
 	{
@@ -56,7 +58,7 @@ void		ft_ls(t_flag *flag, t_lst *rep, int ac, int nb_flag)
 	{
 		if (!(dir = opendir(rep->name)))
 		{
-			ft_error(errno, rep->name);
+			ft_error(rep->name);
 			rep = rep->next;
 		}
 		else
@@ -64,7 +66,7 @@ void		ft_ls(t_flag *flag, t_lst *rep, int ac, int nb_flag)
 			ft_ls_print(ac, nb_flag, rep);
 			ft_ls_end(flag, rep, dir);
 			if (closedir(dir) == -1)
-				ft_error(errno, rep->name);
+				ft_error(rep->name);
 			rep = rep->next;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/31 13:48:08 by khsadira          #+#    #+#             */
-/*   Updated: 2018/08/31 13:49:08 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/02 15:55:45 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static char	**ft_good_str(char **str, int i)
 char		**ft_del_flag(char **str, int nb)
 {
 	int		i;
-	int		j;
 
 	i = 1;
 	while (str[i] && (str[i][0] == '-' && str[i][1] && str[i][1]))

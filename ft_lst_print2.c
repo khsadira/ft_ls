@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:15:40 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/01 20:12:46 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/02 15:40:20 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	ft_lstprint_l3(t_lst *list, t_size *size_l, time_t t1, char **date)
 	int	i;
 
 	ft_putstr(date[1]);
-	i = 1 + size_l->s_day - ft_strlen(date[2]);
+	i = 3 - ft_strlen(date[2]);
 	while (i-- > 0)
 		ft_putchar(' ');
 	ft_putstr(date[2]);

@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 13:54:53 by khsadira          #+#    #+#             */
-/*   Updated: 2018/08/31 13:25:20 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/02 15:56:25 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_lst	*mergesplit(t_lst *head)
 	return (tmp);
 }
 
-static	t_lst	*merge_swap(t_lst *first, t_lst *second)
+static	t_lst	*merge_swap(t_lst *first)
 {
 	first->next->bfr = first;
 	first->bfr = NULL;
@@ -53,25 +53,25 @@ static t_lst	*merge(t_lst *first, t_lst *second, t_lst *lst)
 	if (first->buf.st_mtime > second->buf.st_mtime)
 	{
 		first->next = merge(first->next, second, NULL);
-		return (merge_swap(first, second));
+		return (merge_swap(first));
 	}
 	else if (first->buf.st_mtime == second->buf.st_mtime)
 	{
 		if (ft_strcmp(first->name, second->name) <= 0)
 		{
 			first->next = merge(first->next, second, NULL);
-			return (merge_swap(first, second));
+			return (merge_swap(first));
 		}
 		else
 		{
 			second->next = merge(first, second->next, NULL);
-			return (merge_swap(second, first));
+			return (merge_swap(second));
 		}
 	}
 	else
 	{
 		second->next = merge(first, second->next, NULL);
-		return (merge_swap(second, first));
+		return (merge_swap(second));
 	}
 }
 

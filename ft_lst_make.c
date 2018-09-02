@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 15:16:14 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/01 19:46:33 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/02 16:01:31 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ t_lst			*ft_newele(char *name)
 	return (list);
 }
 
-static t_lst	*ft_creatlist(char *name, char *rep, t_flag *flag, t_lst *list)
+static t_lst	*ft_creatlist(char *name, char *rep, t_lst *list)
 {
 	t_lst	*new_ele;
 
 	new_ele = NULL;
 	new_ele = ft_newele(name);
-	new_ele = ft_ls_l(rep, new_ele, flag);
+	new_ele = ft_ls_l(rep, new_ele);
 	list = ft_addlist(list, new_ele);
 	return (list);
 }
@@ -68,19 +68,19 @@ t_lst			*ft_make_list(DIR *dir, t_flag *flag, char *rep)
 	list = NULL;
 	while ((dirread = readdir(dir)))
 	{
-		if (ft_check_a(flag, dirread->d_name))
-			list = ft_creatlist(ft_strdup(dirread->d_name), rep, flag, list);
-		else if (dirread->d_name[0] == '.' && flag->a == 1)
-			list = ft_creatlist(ft_strdup(dirread->d_name), rep, flag, list);
+		if (ft_check_a(flag, dirread->d_name) && flag->f == 0)
+			list = ft_creatlist(ft_strdup(dirread->d_name), rep, list);
+		else if (dirread->d_name[0] == '.' && (flag->a == 1 || flag->f == 1))
+			list = ft_creatlist(ft_strdup(dirread->d_name), rep, list);
 		else if (dirread->d_name[0] != '.')
-			list = ft_creatlist(ft_strdup(dirread->d_name), rep, flag, list);
+			list = ft_creatlist(ft_strdup(dirread->d_name), rep, list);
 		i++;
 	}
 	while (list && list->bfr)
 		list = list->bfr;
-	if (list && flag && flag->t == 1)
+	if (list && flag && flag->t == 1 && flag->f == 0)
 		list = merge_sort_t(list);
-	else if (list)
+	else if (list && flag->f == 0)
 		list = merge_sort(list);
 	return (list);
 }

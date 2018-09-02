@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 14:23:43 by khsadira          #+#    #+#             */
-/*   Updated: 2018/08/31 11:56:01 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/02 15:49:54 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void			ft_ls_r(t_flag *flag, t_lst *list)
 {
 	t_lst	*l_list;
 
-	if (flag && flag->r)
+	if (flag && flag->r == 1 && flag->f == 0)
 		ft_ls_r_r(flag, list);
 	else
 	{

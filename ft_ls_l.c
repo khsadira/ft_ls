@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 15:33:32 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/01 19:38:25 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/02 15:59:15 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,7 @@ static char		*ft_path(char *rep, char *rep2)
 	return ((ret));
 }
 
-static t_lst	*ft_ls_l_0(t_lst *list)
-{
-	list->path = 0;
-	list->major = 0;
-	list->minor = 0;
-	return (list);
-}
-
-t_lst			*ft_ls_l(char *rep, t_lst *list, t_flag *flag)
+t_lst			*ft_ls_l(char *rep, t_lst *list)
 {
 	struct stat	buf;
 

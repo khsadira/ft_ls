@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 10:45:37 by khsadira          #+#    #+#             */
-/*   Updated: 2018/08/30 16:48:39 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/02 15:57:43 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ int				main(int ac, char **av)
 {
 	t_flag		*flag;
 	t_lst		*rep;
-	DIR			*dir;
 	int			nb_flag;
-	struct stat	buf;
 
 	nb_flag = ft_nb_flag(av);
 	flag = convert_to_flag(av);
