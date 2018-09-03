@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 11:25:26 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/03 16:32:56 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/03 17:20:30 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static void		ft_print_file(t_flag *flag, t_lst *file, t_lst *rep)
 		form = ft_format(file);
 	ft_lstprint(file, flag, form, -1);
 	if (rep)
-		ft_putchar(10);
+		ft_putchar(' ');
 	ft_lst_free(&file);
 	if (flag->l == 1)
 		free(form);

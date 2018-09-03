@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 10:43:46 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/03 15:32:10 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/03 17:27:35 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 static void	ft_ls_print(int ac, int nb_flag, t_lst *list)
 {
-	if (ac - nb_flag > 2 && list->bfr)
+	if ((ac - nb_flag > 2 && !list->bfr))
 	{
 		ft_putstr(list->name);
 		ft_putendl(":");
 	}
-	else if (!list->bfr && ac - nb_flag > 2)
+	else if ((list->bfr && ac - nb_flag > 2))
 	{
 		ft_putchar(10);
 		ft_putstr(list->name);
