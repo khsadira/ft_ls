@@ -6,11 +6,21 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 16:55:13 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/02 19:06:22 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/03 10:56:16 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+static int	get_attr(char *path)
+{
+	if (listxattr(path, NULL, 0, XATTR_NOFOLLOW) > 0)
+	{
+		ft_putchar('@');
+		return (1);
+	}
+	return (0);
+}
 
 static int	get_acl(char *path)
 {
@@ -27,6 +37,7 @@ static int	get_acl(char *path)
 	}
 	if (acl)
 	{
+		acl_free((void *)acl);
 		ft_putchar('+');
 		return (1);
 	}
@@ -62,19 +73,13 @@ int			ft_aclattr(t_lst *list)
 	{
 		if ((rl = readlink(list->path, link, 255)))
 			link[rl] = '\0';
-		if (get_acl(list->path))
+		if (get_attr(link))
 			return (1);
-		if (listxattr(link, NULL, 0, XATTR_NOFOLLOW) != 0)
-		{
-			ft_putchar('@');
+		if (get_acl(link))
 			return (1);
-		}
 	}
-	if (listxattr(list->path, NULL, 0, XATTR_NOFOLLOW) != 0)
-	{
-		ft_putchar('@');
+	if (get_attr(list->path))
 		return (1);
-	}
 	if (get_acl(list->path))
 		return (1);
 	return (0);

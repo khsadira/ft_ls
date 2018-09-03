@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/31 12:04:47 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/02 16:56:35 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/03 10:39:14 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static void	ft_putstr_right2(t_lst *list)
 	if (S_ISGID & list->buf.st_mode)
 	{
 		if (list->buf.st_mode & S_IXGRP)
-			ft_putchar('S');
-		else
 			ft_putchar('s');
+		else
+			ft_putchar('S');
 	}
 	else
 		(list->buf.st_mode & S_IXGRP) == S_IXGRP ?
@@ -65,9 +65,9 @@ void		ft_putstr_right(t_lst *list)
 	if (S_ISUID & list->buf.st_mode)
 	{
 		if (list->buf.st_mode & S_IXUSR)
-			ft_putchar('S');
-		else
 			ft_putchar('s');
+		else
+			ft_putchar('S');
 	}
 	else
 		(list->buf.st_mode & S_IXUSR) == S_IXUSR ?
