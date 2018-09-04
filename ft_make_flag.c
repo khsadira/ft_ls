@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 11:24:28 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/02 15:52:37 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/04 13:51:33 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static t_flag	*check_flag_error(t_flag *flag, char c)
 {
 	if (c == '-' || (c != 'a' && c != 't' && c != 'i' &&
 		c != 'r' && c != 'R' && c != 'l' && c != 'A' && c != 's' &&
-		c != 'f' && c != 'F'))
+		c != 'f' && c != 'F' && c != '1'))
 		return (NULL);
 	if (c == 'a')
 		flag->a = 1;
