@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 16:23:47 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/04 11:09:14 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/04 13:42:41 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_print_color(t_lst *list)
 {
-/*	if (S_ISDIR(list->buf.st_mode))
+	if (S_ISDIR(list->buf.st_mode))
 		ft_putstr(B_CYAN);
 	else if (S_ISLNK(list->buf.st_mode))
 		ft_putstr(PURPLE);
@@ -23,6 +23,6 @@ void	ft_print_color(t_lst *list)
 	else if (S_ISREG(list->buf.st_mode) &&
 		((list->buf.st_mode & S_IXUSR) == S_IXUSR))
 		ft_putstr(RED);
-*/	ft_putstr(list->name);
-//	ft_putstr(INIT);
+	ft_putstr(list->name);
+	ft_putstr(INIT);
 }

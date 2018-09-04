@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 15:33:32 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/04 13:27:59 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/04 13:42:29 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char		*ft_path(char *rep, char *rep2)
 t_lst			*ft_ls_l(char *rep, t_lst *list)
 {
 	struct stat	buf;
-	
+
 	if (!rep)
 		list->path = ft_strdup(list->name);
 	else if (!(list->path = ft_path(rep, list->name)))
