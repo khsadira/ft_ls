@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 11:24:28 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/04 13:51:33 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/04 15:05:51 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_flag	*init_flag(t_flag *flag)
 
 static void		flag_error(t_flag *flag)
 {
-	ft_putstr("ls: illegal option -- -\nusage: ls [-AFRafilrst] [file ...]\n");
+	ft_putstr("ls: illegal option -- -\nusage: ls [-AFRafilrst1] [file ...]\n");
 	free(flag);
 	exit(1);
 }
