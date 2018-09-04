@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 11:25:26 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/03 17:20:30 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/04 11:27:09 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,15 +93,15 @@ static void		ft_print_file(t_flag *flag, t_lst *file, t_lst *rep)
 	t_size	*form;
 
 	form = NULL;
-	if (flag && flag->t == 1)
+	if (flag && flag->t == 1 && !flag->f)
 		file = merge_sort_t(file);
-	else
+	else if (flag && !flag->f)
 		file = merge_sort(file);
 	if (flag->l == 1)
 		form = ft_format(file);
 	ft_lstprint(file, flag, form, -1);
 	if (rep)
-		ft_putchar(' ');
+		ft_putchar(10);
 	ft_lst_free(&file);
 	if (flag->l == 1)
 		free(form);
@@ -117,20 +117,15 @@ t_lst			*convert_to_dir(int nb, char **str, t_flag *flag)
 	noexist = merge_sort(l_noexist(str));
 	if (noexist)
 	{
-		while (noexist)
-		{
-			ft_putstr_fd("ft_ls: ", 2);
-			ft_putstr_fd(noexist->name, 2);
-			ft_putstr_fd(": No such file or directory\n", 2);
-			noexist = noexist->next;
-		}
+		ft_print_nodir(noexist);
 		ft_lst_free(&noexist);
 	}
+	rep = l_rep(str, flag);
 	file = l_file(str, flag);
-	if (flag && flag->t == 1)
-		rep = merge_sort_t(l_rep(str, flag));
-	else
-		rep = merge_sort(l_rep(str, flag));
+	if (flag && flag->t == 1 && !flag->f)
+		rep = merge_sort_t(rep);
+	else if (flag && !flag->f)
+		rep = merge_sort(rep);
 	if (file)
 		ft_print_file(flag, file, rep);
 	return (rep);

@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 10:30:16 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/02 18:02:49 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/04 13:40:58 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,5 @@ void				ft_print_ln(t_lst *list, int flag);
 void				ft_print_color(t_lst *list);
 void				ft_print_f(t_lst *list, int flag, int put);
 int					ft_aclattr(t_lst *list);
+void				ft_print_nodir(t_lst *list);
 #endif

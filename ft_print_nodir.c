@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_color.c                                   :+:      :+:    :+:   */
+/*   ft_print_nodir.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/02 16:23:47 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/04 11:09:14 by khsadira         ###   ########.fr       */
+/*   Created: 2018/09/04 10:28:06 by khsadira          #+#    #+#             */
+/*   Updated: 2018/09/04 10:29:59 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_print_color(t_lst *list)
+void	ft_print_nodir(t_lst *list)
 {
-/*	if (S_ISDIR(list->buf.st_mode))
-		ft_putstr(B_CYAN);
-	else if (S_ISLNK(list->buf.st_mode))
-		ft_putstr(PURPLE);
-	else if (S_ISFIFO(list->buf.st_mode))
-		ft_putstr(YELLOW);
-	else if (S_ISREG(list->buf.st_mode) &&
-		((list->buf.st_mode & S_IXUSR) == S_IXUSR))
-		ft_putstr(RED);
-*/	ft_putstr(list->name);
-//	ft_putstr(INIT);
+	while (list)
+	{
+		ft_putstr_fd("ft_ls: ", 2);
+		ft_putstr_fd(list->name, 2);
+		ft_putendl_fd(": No such file or directory", 2);
+		list = list->next;
+	}
 }

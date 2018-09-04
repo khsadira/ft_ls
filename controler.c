@@ -6,7 +6,7 @@
 /*   By: khsadira <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 10:45:37 by khsadira          #+#    #+#             */
-/*   Updated: 2018/09/03 10:02:41 by khsadira         ###   ########.fr       */
+/*   Updated: 2018/09/04 11:15:48 by khsadira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int		ft_nb_flag(char **av)
 	return (i - 1);
 }
 
-int				main(int ac, char **av)
+int				main(int ac, char **av) 
 {
 	t_flag		*flag;
 	t_lst		*rep;
