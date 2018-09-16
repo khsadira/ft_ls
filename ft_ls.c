@@ -12,6 +12,22 @@
 
 #include "ft_ls.h"
 
+static void	ft_ls_print_r(int ac, int nb_flag, t_lst *list)
+{
+	if ((ac - nb_flag > 2 && !list->next))
+	{
+		ft_putstr(list->name);
+		ft_putendl(":");
+	}
+	else if ((list->next && ac - nb_flag > 2))
+	{
+		ft_putchar(10);
+		ft_putstr(list->name);
+		ft_putendl(":");
+	}
+}
+
+
 static void	ft_ls_print(int ac, int nb_flag, t_lst *list)
 {
 	if ((ac - nb_flag > 2 && !list->bfr))
@@ -51,24 +67,51 @@ static void	ft_ls_end(t_flag *flag, t_lst *rep, DIR *dir)
 		ft_lst_free(&lst_dir);
 }
 
-void		ft_ls(t_flag *flag, t_lst *rep, int ac, int nb_flag)
+static void	ft_ls_rev(t_flag *flag, t_lst *rep, int ac, int nb_flag)
 {
-	DIR				*dir;
+	DIR	*dir;
 
+	while (rep && rep->next)
+		rep = rep->next;
 	while (rep && rep->name)
 	{
 		if (!(dir = opendir(rep->name)))
 		{
 			ft_error(rep->name);
-			rep = rep->next;
+			rep = rep->bfr;
 		}
 		else
 		{
-			ft_ls_print(ac, nb_flag, rep);
+			ft_ls_print_r(ac, nb_flag, rep);
 			ft_ls_end(flag, rep, dir);
 			if (closedir(dir) == -1)
 				ft_error(rep->name);
-			rep = rep->next;
+			rep = rep->bfr;
 		}
 	}
+}
+
+void		ft_ls(t_flag *flag, t_lst *rep, int ac, int nb_flag)
+{
+	DIR	*dir;
+
+	if (flag && flag->r)
+		ft_ls_rev(flag, rep, ac, nb_flag);
+	else
+		while (rep && rep->name)
+		{
+			if (!(dir = opendir(rep->name)))
+			{
+				ft_error(rep->name);
+				rep = rep->next;
+			}
+			else
+			{
+				ft_ls_print(ac, nb_flag, rep);
+				ft_ls_end(flag, rep, dir);
+				if (closedir(dir) == -1)
+					ft_error(rep->name);
+				rep = rep->next;
+			}
+		}
 }
