@@ -95,7 +95,7 @@ void		ft_ls(t_flag *flag, t_lst *rep, int ac, int nb_flag)
 {
 	DIR	*dir;
 
-	if (flag && flag->r)
+	if (flag && flag->r && !flag->f)
 		ft_ls_rev(flag, rep, ac, nb_flag);
 	else
 		while (rep && rep->name)
